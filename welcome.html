@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="js/scriptfile.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
-      
         <link rel="stylesheet" href="css/style.css">
-        <script>
-        </script>
-        <style ></style>
     </head>
     <body>
-        <div class="new" id="newname">
+        <div class="new" id="name" style="text-align: center;">
             
         </div>
     </body>
     <script>
-         document.getElementById('newname').innerHTML = `<h1>Welcome, ${localStorage.getItem('inputUser')}</h1>`;
+         document.getElementById('name').innerHTML = `<h1>Welcome Back, ${localStorage.getItem('user')}</h1>`;
     </script>
 </html>

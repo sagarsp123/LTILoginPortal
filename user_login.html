@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        window.onload = () => {
+            if (document.cookie.indexOf('cookie_user=') != -1) {
+                array = document.cookie.split(';');
+                console.log(array);
+                var flag1 = array[0].split("=")[1];
+                var flag2 = array[1].split("=")[1];    
+                var user = window.atob(flag1).toString();
+                var pwd = window.atob(flag2).toString();
+                if (user == "LTI" && pwd == "123") {
+                    window.location = "welcome.html";
+                }
+                else {
+                    window.location + "user_login.html"
+                }
+            }
+        }
+
+        function storage() {
+            let user = document.getElementById('user').value;
+            let pwd = document.getElementById('pwd').value;
+            let input = document.getElementById('check');
+            if (user == "LTI" && pwd == "123") {
+                if(input.checked==true){
+                    document.getElementById('message').innerHTML="Login Successful welcome "+user;
+                    var date = new Date();
+                    date.setTime(date.getTime() + 86400000);
+                    var expires = "expires=" + date.toUTCString();
+                    document.cookie = 'cookie_user=' + window.btoa(user); expires; 'path=/';
+                    document.cookie = 'cookie_pass=' + window.btoa(pwd); expires; 'path=/';
+                    }
+                localStorage.setItem("user", user);
+                window.open('welcome.html');   
+            }
+            else {
+                document.getElementById('message').innerHTML = "Invalid Username/Password. Try again !!";
+            }
+        }
+    </script>
+</head>
+<body >
+    <form>
+        <div class="login">
+            <h1>Login to Web App</h1> 
+            <h3 id="message" style="color: red;"></h3>    
+            <p><input type="text" id="user" placeholder="Username"></p>
+            <p><input type="password" id="pwd" placeholder="Password"></p>
+            <div id="remember" class="remember" style="text-align: right; font-size: 15px;">
+                <label>
+                <input id = "check" type="checkbox" value="remember-me" > Remember me
+                </label>
+            </div><br>
+            <div style="text-align: center;">
+                <input type="button" onclick="storage();" value="Submit">
+            </div>       
+        </div>
+    </form>
+</body>
+
+</html>
